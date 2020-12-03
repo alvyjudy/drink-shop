@@ -12,13 +12,22 @@ module.exports = {
       },
       {
         test:/\.css$/,
-        use:["style-loader", "css-loader"]
+        use:[
+          "style-loader",
+          {
+            loader: "css-loader",
+            options:{
+              modules:true,
+            }
+          }
+        ]
       }
     ],
   },
   devServer:{
     contentBase:"./dist",
     port: 3001,
+    host: "0.0.0.0",
     proxy: {
       "/api":"http://localhost:3002"
     }
