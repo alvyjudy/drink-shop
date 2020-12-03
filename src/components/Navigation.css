@@ -1,0 +1,25 @@
+.container, .button {
+  background-color: wheat;
+}
+
+.container {
+  height: 10em;
+  padding: 0 1em 0 1em;
+
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 3em;
+}
+
+.button {
+  font-size: 2em;
+  font-weight: bold;
+  border: 0.05em black solid;
+  height: 2em;
+}
