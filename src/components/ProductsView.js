@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import {Link} from "react-router-dom";
+
 import styles from "./ProductsView.css";
 
 export const ProductsView = (props) => {
@@ -22,7 +24,7 @@ export const ProductsView = (props) => {
         products.map(item=>{
           return (
             <div key={item.id} className={styles.ProductThumbnail}>
-              <div className={styles.Img}></div>
+              <Link to={"/product/" + item.id} className={styles.Img}></Link>
               <p className={styles.Name}>{item.name}</p>
               <p className={styles.Price}>${item.price}</p>
             </div>
