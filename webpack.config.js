@@ -6,6 +6,7 @@ module.exports = {
   mode:"development",
   output: {
     path: path.join(__dirname, "dist"),
+    publicPath: "/",
   },
   module:{
     rules: [
