@@ -9,8 +9,10 @@ export const Navigation = () => {
       <Link to="/products" className={styles.button}>
         <span className={styles.ButtonText}>Products</span>
       </Link>
-      <Link to="/" className={styles.logo}>
-        <span className={styles.ButtonText}>Home</span>
+      <Link to="/">
+        <img className={styles.logo} 
+        src="/Logo.svg" 
+        alt="Home"/>
       </Link>
       <button className={styles.button}>
         <span className={styles.ButtonText}>My Order</span>
