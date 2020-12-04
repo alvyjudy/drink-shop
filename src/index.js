@@ -16,6 +16,7 @@ router.get("/products", products(), (req, res)=>{
   res.json(req.products)
 })
 
-app.use('/api', router);
+
+app.use('/', router);
 
 module.exports = app
