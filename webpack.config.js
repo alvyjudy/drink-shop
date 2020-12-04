@@ -1,8 +1,12 @@
 const webpack = require("webpack");
+const path = require("path");
 
 module.exports = {
   entry:"./src/index.js",
   mode:"development",
+  output: {
+    path: path.join(__dirname, "dist"),
+  },
   module:{
     rules: [
       {
@@ -30,6 +34,7 @@ module.exports = {
     host: "0.0.0.0",
     proxy: {
       "/api":"http://localhost:3002"
-    }
+    },
+    historyApiFallback: true,
   }
 }
