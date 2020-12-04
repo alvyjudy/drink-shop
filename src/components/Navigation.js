@@ -11,7 +11,7 @@ export const Navigation = () => {
       </Link>
       <Link to="/">
         <img className={styles.logo} 
-        src="/Logo.svg" 
+        src="/assets/logo.svg" 
         alt="Home"/>
       </Link>
       <button className={styles.button}>
