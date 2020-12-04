@@ -6,7 +6,6 @@ module.exports = {
   mode:"development",
   output: {
     path: path.join(__dirname, "dist"),
-    publicPath: "/",
   },
   module:{
     rules: [
@@ -34,7 +33,14 @@ module.exports = {
     port: 3001,
     host: "0.0.0.0",
     proxy: {
-      "/api":"http://localhost:3002"
+      "/api": {
+        target:"http://localhost:3002",
+        pathRewrite:{"^/api":""}
+      },
+      "/assets":{
+        target:"http://localhost:3003",
+        pathRewrite: {"^/assets":""},
+      }
     },
     historyApiFallback: true,
   }

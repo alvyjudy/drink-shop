@@ -8,7 +8,18 @@ app.use(express.static("dist"));
 
 app.use("/api", createProxyMiddleware({
     target:"https://backend-dot-meadowvale.nn.r.appspot.com",
-    changeOrigin:true
+    changeOrigin:true,
+    pathRewrite:{
+        "^/api":""
+    }
+}))
+
+app.use("/assets", createProxyMiddleware({
+    target:"https://storage.googleapis.com/alvybbt",
+    changeOrigin:true,
+    pathRewrite:{
+        "^/assets":""
+    }
 }))
 
 app.get("*", (req, res) => {
