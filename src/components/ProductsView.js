@@ -10,7 +10,6 @@ export const ProductsView = (props) => {
   useEffect(() => {
     return axios.get("/api/products")
       .then(res=>{
-        console.log(res.data);
         setProducts(res.data);
       })
       .catch(e=>{console.log('error in ajax request ProductsView')})
