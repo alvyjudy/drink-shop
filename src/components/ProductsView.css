@@ -1,33 +1,67 @@
 .ProductsView {
-  display: flex;
-  flex-direction: row;
+  margin: auto;
+  width: 90%;
+  
+
+  display: grid;
+  grid-template-columns: 50% 50%;
+  justify-items: center;
 }
 
 .ProductThumbnail {
-  border: 0;
-  margin: 1em;
-  padding: 1em;
+  grid-column-start: auto;
 
-  display: flex;
-  flex-direction: column;
+  border: 0;
+  margin: 0 1em 3em 1em;
+  padding: 0;
+  width: 90%;
+  height: 40em;
+
+
+  display: grid;
+  grid-template-rows: 80% 5% 15%;
   align-items: center;
+  justify-items: center;
+
+}
+
+.Link {
+  grid-row-start: 1;
+  grid-row-end: 1;
+
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 .Img {
-  border: 0.05em black solid;
-  height: 10em;
-  width: 10em;
+  height: 100%;
+  object-fit: fill;
 }
 
+
 .Name {
-  margin: 1em 0 0 0;
+  grid-row-start: 2;
+  grid-row-end: 2;
+  align-self: end;
+  font-size: 1.4em;
+  font-weight: bold;
+  margin: 0;
   font-family: 'Courier New', Courier, monospace;
 }
 
 .Price {
-  margin: 0.5em 0 0 0;
-  color: gray;
-  opacity: 0.9;
+  grid-row-start: 3;
+  grid-row-end: 3;
+  align-self: start;
+
+
+  margin: 0;
+  color: black;
+  opacity: 1.1;
   font-size: 0.9em;
   font-family: 'Courier New', Courier, monospace;
 }
