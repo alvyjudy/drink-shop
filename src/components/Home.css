@@ -1,0 +1,73 @@
+.Home {
+  margin: 5em auto;
+  border: 1px black solid;
+  width: 40em;
+  height: 60em;
+  
+  display: grid;
+  grid-template-rows: 60% 40%;
+}
+
+.PicsContainer {
+  grid-row: 1 / 2;
+
+  border: 1px black solid;
+  overflow: hidden;
+
+  display: grid;
+  grid-template-rows: 20% 20% 20% 20% 20%;
+  grid-template-columns: 40% 20% 40%;
+  align-items: center;
+  justify-items: center;
+}
+
+.PicOverlay {
+  grid-row: 1 / 5;
+  grid-column: 1 /4;
+  background-color: black;
+  z-index: 2;
+  width: 100%;
+  opacity: 0.8;
+}
+
+
+.Pic {
+  grid-row: 1 / 5;
+  grid-column: 1 / 4;
+
+  object-fit: cover;
+  width: 100%;
+
+  z-index: 1;
+
+
+}
+
+.Slider {
+  grid-row: 5 / 6;
+  grid-column: 1 / 4;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.SlideButton {
+  height: 2em;
+  width: 2em;
+  margin: 2em;
+  background-color: white;
+  border-radius: 1em;
+
+}
+
+.ShopNow {
+  grid-row: 3 / 4;
+  grid-column: 2 / 3;
+  height: 5em;
+  width: 10em;
+  background-color: #f4a688;
+  border: 0;
+  color: white;
+  z-index: 3;
+}
