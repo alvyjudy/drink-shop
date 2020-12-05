@@ -1,11 +1,7 @@
 .Container, .ContainerLoading {
   display: flex;
   justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  width: 20em;
-  height: 20em;
-  margin: 0.2em;
+  align-items: center; 
 }
 
 .ContainerLoading {
@@ -36,7 +32,12 @@
   }
 }
 
-.ShowImg {
+.ShowImgFillY {
+  object-fit: cover;
+  height: 100%;
+}
+
+.ShowImgFillX {
   object-fit: cover;
   width: 100%;
 }
