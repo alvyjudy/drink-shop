@@ -14,7 +14,6 @@ const App = () => {
     <Router>
       <div>
       <Navigation/>
-      <TestButton/>
 
       <Switch>
         <Route exact path="/">
