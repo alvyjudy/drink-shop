@@ -1,11 +1,12 @@
 import React, {useState} from "react";
+import {Link} from "react-router-dom";
 
 import styles from "./Home.css";
 
 export const Home = () => {
   return <div className={styles.Home}>
     <Gallery/>
-    
+    <SubscribeBox/>
   </div>
 }
 
@@ -15,6 +16,13 @@ const Gallery = () => {
   
   return (
     <div className={styles.PicsContainer}>
+      <p className={styles.PicTitle}>Best bubble tea in town</p>
+      
+      <Link to="/products" className={styles.ShopNow}>
+        <p className={styles.ShopNowText}>Shop now</p>
+      </Link>
+
+
       <div className={styles.PicOverlay}>
         <img src={"/assets/" + pic} className={styles.Pic}/>
       </div>
@@ -34,7 +42,38 @@ const Gallery = () => {
           )})
         }
       </div>
-      <button className={styles.ShopNow}>Shop Now</button>
+
+      
+    </div>
+  )
+}
+
+const SubscribeBox = () => {
+  const [email, setEmail] = useState("");
+
+  return (
+    <div className={styles.SubscribeBoxContainer}>
+      <div className={styles.SubscribeBoxTitleContainer}>
+        <div className={styles.SubscribeBoxTitle}>
+          Get involved!
+        </div>
+        <div className={styles.SubscribeBoxSubTitle}>
+          Sign up to receive exclusive deals and offers
+        </div>
+      </div>
+
+      <div className={styles.SubscribeBoxInputContainer}>
+        <input className={styles.SubscribeInputBox}
+          value={email}
+          placeholder="Email address"
+          onChange={e=>{
+            e.preventDefault();
+            setEmail(e.target.value);
+          }}
+        />
+        <button className={styles.SubscribeButton}>Subscribe</button>
+
+      </div>
     </div>
   )
 }
