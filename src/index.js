@@ -12,7 +12,6 @@ import {Home} from "./components/Home";
 const App = () => {
   return (
     <Router>
-      <div>
       <Navigation/>
 
       <Switch>
@@ -34,7 +33,7 @@ const App = () => {
 
       </Switch>
       
-    </div>
+
     </Router>
     
   )
