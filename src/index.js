@@ -8,6 +8,8 @@ import {ProductsView} from "./components/ProductsView";
 import {ProductDetail} from "./components/ProductDetail";
 import {NoMatch} from "./components/NoMatch";
 import {Home} from "./components/Home";
+import {SignUp} from "./components/SignUp";
+import {Login} from "./components/LogIn";
 
 const App = () => {
   return (
@@ -25,6 +27,14 @@ const App = () => {
 
         <Route path="/product/:id">
           <ProductDetail /> {/*useParams to grab id value*/}
+        </Route>
+
+        <Route path="/auth/sign-up">
+          <SignUp/>
+        </Route>
+
+        <Route path="/auth/login">
+          <Login/>
         </Route>
 
         <Route>

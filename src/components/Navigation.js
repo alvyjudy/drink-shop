@@ -15,7 +15,7 @@ export const Navigation = () => {
         <a href="https://alvyjudy-58477.medium.com/creating-a-website-for-a-bubble-tea-shop-v1-1-14ff3b397781"
            className={styles.BlogLink}            
         >blog</a>
-        <Link to="/sign-up"
+        <Link to="/auth/sign-up"
               className={styles.SignUpButton}
         >Sign up</Link>
       </div>
