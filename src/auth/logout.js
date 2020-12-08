@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const {db} = require("./db");
+const {db} = require("../db");
 
 const logout = () => (req, res, next) => {
   const token = req.get("Authorization").split(" ")[1]

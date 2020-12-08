@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const {db} = require("./db")
+const {db} = require("../db")
 
 const login = () => (req, res, next) => {
   const {email, password} = req.body;
