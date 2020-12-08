@@ -1,4 +1,4 @@
-const app = require("./src/index.js");
+const {app} = require("./src/index.js");
 
 if (process.env.ENV === "local") {
   app.listen(3002)
