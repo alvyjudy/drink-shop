@@ -6,7 +6,6 @@ import {Provider} from "react-redux";
 
 import {store} from "./redux/reducer";
 import {Navigation} from "./components/Navigation";
-import {TestButton} from "./TestButton";
 import {ProductsView} from "./components/ProductsView";
 import {ProductDetail} from "./components/ProductDetail";
 import {NoMatch} from "./components/NoMatch";

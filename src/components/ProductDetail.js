@@ -25,7 +25,7 @@ export const ProductDetail = () => {
   return ( product ? 
     <div className={styles.ProductDetail}>
       <ImageViewer id={product.id} mainPic={product.mainPic} sidePics={product.sidePics}/>
-      <Purchase name={product.name} price={product.price}/>
+      <Purchase id={product.id} name={product.name} price={product.price}/>
     </div> : <div>loading</div>
   )
   
@@ -115,13 +115,8 @@ const Purchase = ({name, price, id}) => {
               "Content-Type":"application/json",
               "Authorization": "Bearer " + token
             }
-          }).then(e=>{
-            if (e.status === 200) {
-              dispatch(addMinusItem(id, 1, token));
-              history.push("/cart");
-            } else {
-              throw Error("Error when checking status")
-            }
+          }).then(res=>{
+            history.push("/cart");
           }).catch(e=>{
             console.log(e)
           })

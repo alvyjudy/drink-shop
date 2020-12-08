@@ -3,16 +3,14 @@ import axios from "axios";
 import {useSelector, useDispatch} from "react-redux";
 
 import styles from "./Cart.css";
-import {loadItems} from "../redux/actions";
 
 export const Cart = () => {
   const dispatch = useDispatch();
   const token = useSelector(store=>store.token);
-  const items = useSelector(store=>store.cartItems);
+  const [items, setItems] = useState();
   const [products, setProducts] = useState();
-  const [loggedIn, setLoggedIn] = useState(false);
 
- 
+  
   useEffect(()=>{
     axios.get("/api/products")
       .then(res=>{
@@ -21,36 +19,36 @@ export const Cart = () => {
   }, [])
 
   useEffect(()=>{
-    axios.get("/api/cart/get-items", {
-      headers:{"Authorization":"Bearer "+token}
-    }).then(res=>{
-     
-      if (res.status === 200) {
-        
-        setLoggedIn(true);
-        dispatch(loadItems(res.data));
-      }
-    }).catch(e=>{
-      console.log("User not logged in.", e)
-      
-    })
-  })
+    if (token) {
+      axios.get("/api/cart/get-items", {
+        headers:{"Authorization":"Bearer "+token}
+      }).then(res=>{
+        if (res.status === 200) {
+          setItems(res.data)
+        } else {throw Error}
+      }).catch(e=>{
+        console.log(e)
+      })
+    }
+  }, [])
 
-  if (!loggedIn) {
+  if (!token) {
     return <p>Log in or sign up to add items</p>
   } else if (!products || !items) {
     return <div>Loading</div> 
   } else {
-    
     return (
       <div className={styles.Cart}>
         {items.map((item, i)=>{
+          const product = products.filter(each=>{
+            return each.id === item[0]
+          })[0]
           return (
-            <div className={styles.CartItem}>
-              <img src={"/assets/"+products[item[0]].thumbnail} 
+            <div key={i} className={styles.CartItem}>
+              <img src={"/assets/"+product.thumbnail} 
                 className={styles.CartItemPic}/>
-              <p className={styles.ProductName}>{products[item[0]].name}</p>
-              <p className={styles.ProductPrice}>{products[item[0]].price}</p>
+              <p className={styles.ProductName}>{product.name}</p>
+              <p className={styles.ProductPrice}>{product.price}</p>
 
               <p className={styles.ProductQuantity}>{item.quantity}</p>
               <button className={styles.AddButton}>+</button>
