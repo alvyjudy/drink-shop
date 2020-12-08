@@ -48,9 +48,9 @@ export const Cart = () => {
               <img src={"/assets/"+product.thumbnail} 
                 className={styles.CartItemPic}/>
               <p className={styles.ProductName}>{product.name}</p>
-              <p className={styles.ProductPrice}>{product.price}</p>
+              <p className={styles.ProductPrice}>${product.price}</p>
 
-              <p className={styles.ProductQuantity}>{item.quantity}</p>
+              <p className={styles.ProductQuantity}>{item[1]}</p>
               <button className={styles.AddButton}>+</button>
               <button className={styles.MinusButton}>-</button>
        
