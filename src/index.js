@@ -13,6 +13,9 @@ import {NoMatch} from "./components/NoMatch";
 import {Home} from "./components/Home";
 import {SignUp} from "./components/SignUp";
 import {Login} from "./components/LogIn";
+import {Cart} from "./components/Cart";
+
+
 
 const App = () => {
   return (
@@ -39,6 +42,10 @@ const App = () => {
 
           <Route path="/auth/login">
             <Login/>
+          </Route>
+
+          <Route path="/cart">
+            <Cart/>
           </Route>
 
           <Route>

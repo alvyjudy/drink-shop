@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from "react";
-import {useParams} from "react-router-dom";
+import {useParams, useHistory} from "react-router-dom";
 import axios from "axios";
+import {useSelector, useDispatch} from "react-redux";
 
 import styles from "./ProductDetail.css";
+import {addMinusItem} from "../redux/actions";
 
 export const ProductDetail = () => {
   const {id} = useParams();
-  
   const [product, setProduct] = useState();
 
   useEffect(()=>{
@@ -71,8 +72,12 @@ const ImageViewer = ({mainPic, sidePics}) => {
   )
 }
 
-const Purchase = ({name, price}) => {
+const Purchase = ({name, price, id}) => {
+  const history = useHistory();
+  const token = useSelector(store=>store.token);
+  const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
+
 
   return (
     <div className={styles.Purchase}>
@@ -102,7 +107,26 @@ const Purchase = ({name, price}) => {
         >-</button>
       </div>
 
-      <button className={styles.AddToCart}>Add to cart</button>
+      <button className={styles.AddToCart}
+        onClick={e=>{
+          e.preventDefault();
+          axios.post("/api/cart/add-minus-item", [id, quantity], {
+            headers: {
+              "Content-Type":"application/json",
+              "Authorization": "Bearer " + token
+            }
+          }).then(e=>{
+            if (e.status === 200) {
+              dispatch(addMinusItem(id, 1, token));
+              history.push("/cart");
+            } else {
+              throw Error("Error when checking status")
+            }
+          }).catch(e=>{
+            console.log(e)
+          })
+        }}
+      >Add to cart</button>
       <button className={styles.BuyItNow}>Buy it now</button>
       
     </div>

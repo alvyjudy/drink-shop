@@ -1,12 +1,14 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 import axios from "axios";
 
 import styles from "./Navigation.css";
+import {rmToken} from "../redux/actions";
 
 export const Navigation = () => {
   const token = useSelector(store=>store.token);
+  const dispatch = useDispatch();
   return (
     <div>
       <div className={styles.TopBannerContainer}>
@@ -31,8 +33,10 @@ export const Navigation = () => {
               e.preventDefault();
               axios({
                 method: "post",
-                url:"/api/auth/log-out",
+                url:"/api/auth/logout",
                 headers: {"Authorization":"Bearer " + token}
+              }).then(e=>{
+                dispatch(rmToken());
               })
             }}
           >Log out</button>
@@ -49,7 +53,7 @@ export const Navigation = () => {
           alt="Home"/>
         </Link>
         <button className={styles.button}>
-          <span className={styles.ButtonText}>My Order</span>
+          <Link to="/cart" className={styles.ButtonText}>My Order</Link>
         </button>
       </div>
     </div>
