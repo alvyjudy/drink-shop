@@ -1,0 +1,41 @@
+.Cart {
+  margin: 4em auto;
+  width: 40em;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.CartItem {
+  margin: 1em;
+  height: 10em;
+  width: 30em;
+  overflow: hidden;
+  border: 1px black solid;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+.CartItemPic {
+  grid-row: 1 / 5;
+  grid-column: 1 / 2;
+  object-fit: cover;
+  height: 100%;
+}
+
+.ProductName {
+  grid-row: 1 / 3;
+  grid-column: 2 / 3;
+
+}
+
+.ProductPrice {
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
+}
+
+.ProductQuantity {
+}
