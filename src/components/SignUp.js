@@ -1,14 +1,17 @@
 import React, {useState} from "react";
 import {Link, useHistory} from "react-router-dom";
 import axios from "axios";
+import {useDispatch} from "react-redux"
 
 import styles from "./SignUp.css";
+import {setToken} from "../redux/actions";
 
 export const SignUp = ({originalLink}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const history = useHistory();
+  const dispatch = useDispatch();
 
   return (
     <div className={styles.AuthContainer}>
@@ -35,12 +38,13 @@ export const SignUp = ({originalLink}) => {
         <button className={styles.SignUpButton}
           onClick={e=>{
             e.preventDefault();
-            axios.post("/auth/signup")
+            axios.post("/api/auth/signup", {email, password})
               .then(e=>{
                 if (e.status === 200) {
-                  history.push(originalLink);
+                  dispatch(setToken(e.data));
+                  history.push(originalLink || "/");
                 } else {
-                  setErrorMessage("Error");
+                  throw Error;
                 }
               })
               .catch(e=>{
