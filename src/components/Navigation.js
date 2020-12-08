@@ -1,9 +1,12 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {useSelector} from "react-redux";
+import axios from "axios";
 
 import styles from "./Navigation.css";
 
 export const Navigation = () => {
+  const token = useSelector(store=>store.token);
   return (
     <div>
       <div className={styles.TopBannerContainer}>
@@ -15,9 +18,26 @@ export const Navigation = () => {
         <a href="https://alvyjudy-58477.medium.com/creating-a-website-for-a-bubble-tea-shop-v1-1-14ff3b397781"
            className={styles.BlogLink}            
         >blog</a>
-        <Link to="/auth/sign-up"
-              className={styles.SignUpButton}
-        >Sign up</Link>
+
+        { !token &&
+          <Link to="/auth/sign-up"
+                className={styles.SignUpButton}
+          >Sign up</Link>
+        }
+
+        { token && 
+          <button className={styles.SignUpButton}
+            onClick={e=>{
+              e.preventDefault();
+              axios({
+                method: "post",
+                url:"/api/auth/log-out",
+                headers: {"Authorization":"Bearer " + token}
+              })
+            }}
+          >Log out</button>
+        }
+
       </div>
       <div className={styles.container}>
         <Link to="/products" className={styles.button}>
