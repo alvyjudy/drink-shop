@@ -40,6 +40,7 @@ export const Cart = () => {
     return (
       <div className={styles.Cart}>
         {items.map((item, i)=>{
+          const [id, count] = item;
           const product = products.filter(each=>{
             return each.id === item[0]
           })[0]
@@ -50,9 +51,63 @@ export const Cart = () => {
               <p className={styles.ProductName}>{product.name}</p>
               <p className={styles.ProductPrice}>${product.price}</p>
 
-              <p className={styles.ProductQuantity}>{item[1]}</p>
-              <button className={styles.AddButton}>+</button>
-              <button className={styles.MinusButton}>-</button>
+              <div className={styles.ProductQuantityContainer}>
+                <p className={styles.ProductQuantity}>Qty: {count}</p>
+                <button className={styles.AddButton}
+                  onClick={e=>{
+                    e.preventDefault();
+                    axios.post("/api/cart/add-minus-item", [id, 1],{
+                      headers:{
+                        "Content-Type":"application/json",
+                        "Authorization":"Bearer "+token
+                      }
+                    }).then(e=>{
+                      if (e.status === 200) {
+                        const newItems = new Map(items);
+                        const oldvalue = newItems.get(id);
+                        newItems.set(id, oldvalue + 1)
+                        setItems(Array.from(newItems));
+                      } else {throw Error("error")}                      
+                    }).catch(e=>{console.log(e)})
+                  }}
+                >+</button>
+                <button className={styles.MinusButton}
+                  onClick={e=>{
+                    e.preventDefault();
+                    axios.post("/api/cart/add-minus-item", [id, -1],{
+                      headers:{
+                        "Content-Type":"application/json",
+                        "Authorization":"Bearer "+token
+                      }
+                    }).then(e=>{
+                      if (e.status === 200) {
+                        const newItems = new Map(items);
+                        const oldvalue = newItems.get(id);
+                        newItems.set(id, Math.max(1, oldvalue - 1));
+                        setItems(Array.from(newItems));
+                      } else {throw Error("error")}                      
+                    }).catch(e=>{console.log(e)})
+                  }}
+                >-</button>
+              </div>
+
+              <button className={styles.RemoveButton}
+                onClick={e=>{
+                  e.preventDefault();
+                  axios.post("/api/cart/remove-item", [id], {
+                    headers:{
+                      "Content-Type":"application/json",
+                      "Authorization":"Bearer "+token
+                    }
+                  }).then(e=>{
+                    if (e.status === 200) {
+                      const newItems = new Map(items);
+                      newItems.delete(id);
+                      setItems(Array.from(newItems));
+                    } else {throw Error("error")}
+                  }).catch(e=>{console.log(e)})
+                }}
+              >delete</button>
        
             </div> 
           )})} 
