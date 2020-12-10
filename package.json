@@ -9,10 +9,14 @@
     "startLocal": "export ENV=local; nodemon serve.js"
   },
   "dependencies": {
+    "axios": "^0.21.0",
     "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.5.1"
   },
   "devDependencies": {
+    "http-terminator": "^2.0.3",
+    "jest": "^26.6.3",
     "nodemon": "^2.0.6"
   }
 }
