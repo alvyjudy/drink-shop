@@ -1,7 +1,10 @@
 const {app} = require("./src/index.js");
+const {dbInit} = require("./src/dbInit");
 
 if (process.env.ENV === "local") {
-  app.listen(3002)
+  dbInit().then(res=>{
+    app.listen(3002)
+  })
 } else {
   app.listen(process.env.PORT)
 }
