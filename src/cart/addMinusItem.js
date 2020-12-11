@@ -2,8 +2,8 @@ const {db} = require("../db");
 
 const addMinusItem = () => (req, res, next) => {
   const email = req.email;
-  const item = req.body;
-  db.addMinusItem(item, email);
+  const [itemId, count] = req.body;
+  db.addMinusItem(itemId, count, email);
   next();
 }
 

@@ -9,8 +9,12 @@ const {login} = require("./auth/login");
 const {checkLogin} = require("./auth/checkLogin");
 const {logout} = require("./auth/logout");
 const {getItems} = require("./cart/getItems");
-const {addMinusItem} = require("./cart/addMinusItem");
+const {addItemEntry} = require("./cart/addItemEntry");
+const {modifyItem} = require("./cart/modifyItem");
 const {removeItem} = require("./cart/removeItem");
+const {placeOrder} = require("./orders/placeOrder");
+const {pay} = require("./orders/pay");
+const {getOrders} = require("./orders/getOrders");
 
 router.get("/", (req, res) => {
   res.send("hello world");
@@ -33,7 +37,7 @@ router.post("/auth/signup",
   signup(), 
   login(), 
   (req, res)=>{
-  res.status(200).send(req.jwtToken)
+  res.status(200).json({token: req.token})
 })
 
 router.post("/auth/login", 
@@ -42,44 +46,73 @@ router.post("/auth/login",
   express.json(), 
   login(), 
   (req, res) => {
-  res.status(200).send(req.jwtToken)
+  res.status(200).json({token:req.token})
 })
 
 router.post("/auth/logout", 
   //Authorization: Bearer <jwtToken>
   logout(), 
   (req, res) => {
-  res.status(200).send("Logged out")
+    res.status(200).send("User has been logged out")
 })
 
-router.get("/cart/get-items", checkLogin(), getItems(), (req, res)=>{
-  //Authorization: Bearer <jwtToken>
-  res.status(200).json(req.cartItems)
-})
-
-router.post("/cart/add-minus-item", 
+router.post("/cart/add-item-entry", 
   //Authorization: Bearer <jwtToken>
   //Content-Type: application/json
-  //Request body: [<itemId>, <itemCount>] (integer value)
-  express.json(), 
+  express.json(),
   checkLogin(), 
-  addMinusItem(),
-  (req, res)=>{
-    res.status(200).send("Item has been added. Item ID:" + req.body[0]);
+  addItemEntry(),
+  (req, res) => {
+    res.status(200).json({itemId: req.itemId})
   }
 )
 
-router.post("/cart/remove-item", 
-  //Authorization: Bearer <jwtToken>
-  //Content-Type: application/json
-  //Request body: [<itemId>] (integer value)
+router.put("/cart/modify-item",
+  express.json(),
+  checkLogin(),
+  modifyItem(),
+  (req, res)=>{
+    res.status(200).send("Item has been updated");
+  }
+)
+
+router.delete("/cart/remove-item",
   express.json(),
   checkLogin(),
   removeItem(),
+  (req, res) => {
+    res.status(200).send("Item has been removed");
+  });
+
+router.get("/cart/get-items", 
+  checkLogin(), 
+  getItems(), (req, res)=>{
+    res.status(200).json(req.cartItems)
+})
+
+router.post("/orders/place-order", 
+  express.json(),
+  checkLogin(),
+  placeOrder(),
   (req, res)=>{
-    res.status(200).send("Item has been removed. Item ID: "+req.body[0])
+    res.status(200).json({orderId: req.orderId})
   }
 )
+
+router.put("/orders/pay", 
+  express.json(),
+  checkLogin(),
+  pay(),
+  (req, res) => {
+    res.status(200).send("Payment completed")
+  })
+
+router.get("/orders/get-orders",
+  checkLogin(),
+  getOrders(),
+  (req, res) => {
+    res.status(200).json(req.orders);
+  })
 
 
 

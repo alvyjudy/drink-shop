@@ -1,18 +1,21 @@
 const jwt = require("jsonwebtoken");
 
-const {db} = require('../db');
+const {pool} = require('../db');
 
-const checkLogin = () => (req, res, next) => {
+const checkLogin = () => async (req, res, next) => {
   const token = req.get("Authorization").split(" ")[1]
+  const {userId} = jwt.decode(token, "temporarySecret")
   
-  const {email} = jwt.decode(token, "temporarySecret")
+  const result = (await pool.query(`SELECT 1 FROM session WHERE user_id = $1`,
+    [userId])).rows
 
-  if (db.isUserLoggedIn(email)) {
-    req.email = email
+  if (result.length === 1) {
+    req.userId = userId
     next()
   } else {
-    res.status(403).send("User not logged in.")
+    res.status(400).send("The user is not logged in")
   }
 }
+
 
 module.exports = {checkLogin}

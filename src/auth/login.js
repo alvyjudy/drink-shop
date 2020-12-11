@@ -1,23 +1,23 @@
 const jwt = require("jsonwebtoken");
 
-const {db} = require("../db")
+const {pool} = require("../db")
 
-const login = () => (req, res, next) => {
+const login = () => async (req, res, next) => {
   const {email, password} = req.body;
-  if (!db.doesEmailExist(email)) {
-    res.status(403).send("Email does not exists.");
-    return undefined;
-  } 
-  
-  if (!db.doesPasswordMatch(email, password)) {
-    res.status(403).send("Password incorrect");
-    return undefined;
-  }
 
-  const token = jwt.sign({email}, "temporarySecret");
-  db.loginUser(email, token);
-  req.jwtToken = token;
-  next();
+  const result = (await pool.query(`SELECT user_id FROM users WHERE 
+    email = $1 AND password = $2`, [email, password])).rows
+
+  if (result.length !== 0) {
+    const {user_id: userId} = result[0];
+    const token = jwt.sign({userId}, "temporarySecret");
+    await pool.query(`INSERT INTO session (token, user_id)
+      VALUES ($1, $2);`, [token, userId]);
+    req.token = token;
+    next()
+  } else {
+    res.status(400).send("Invalid credential");
+  }
 }
 
 module.exports = {login}

@@ -43,7 +43,7 @@ const dbInit = async () => {
     ON DELETE CASCADE
   );`)
 
-  await pool.query(`CREATE TABLE IF NOT EXISTS orders (
+  await pool.query(`CREATE TABLE IF NOT EXISTS ordered_items (
     item_id INT,
     item_catalog_id INT,
     quantity INT, 

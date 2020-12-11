@@ -12,7 +12,8 @@
     "axios": "^0.21.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "pg": "^8.5.1"
+    "pg": "^8.5.1",
+    "pg-format": "^1.0.4"
   },
   "devDependencies": {
     "http-terminator": "^2.0.3",

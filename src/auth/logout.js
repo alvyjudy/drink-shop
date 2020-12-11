@@ -1,11 +1,20 @@
 const jwt = require("jsonwebtoken");
 
-const {db} = require("../db");
+const {pool} = require("../db");
 
-const logout = () => (req, res, next) => {
+const logout = () => async (req, res, next) => {
   const token = req.get("Authorization").split(" ")[1]
-  const email = jwt.decode(token, "temporarySecret")
-  db.logOutUser(email)
+  const {userId} = jwt.decode(token, "temporarySecret")
+  
+  const result = (await pool.query(`SELECT 1 FROM session WHERE user_id = $1`,
+    [userId])).rows
+
+  if (result.length === 1) {
+    await pool.query(`DELETE FROM session WHERE user_id = $1`, [userId]);
+    next()
+  } else {
+    res.status(400).send("The specified user does not exist.")
+  }
   next()
 }
 
