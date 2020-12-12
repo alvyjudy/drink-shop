@@ -12,11 +12,10 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  border: 0.1em black solid;
 }
 
 .SignUpTitle {
-  font-size: 3em;
+  font-size: 2em;
 }
 
 .InputEmail, .InputPassword {
