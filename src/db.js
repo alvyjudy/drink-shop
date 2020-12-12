@@ -8,4 +8,18 @@ const pool = new Pool({
   port: process.env.PGPORT || 5432
 });
 
-module.exports = {pool};
+module.exports = {pool: {
+  query: (text, params) => {
+    console.log(text);
+    return pool.query(text, params).then(res=>{
+      console.log(res.rows)
+      return res
+    }).catch(e=>{
+      console.log(e)
+      return e;
+    });
+  },
+  connect: () => {
+    return pool.connect();
+  }
+}};
