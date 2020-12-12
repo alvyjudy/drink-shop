@@ -41,7 +41,7 @@ export const SignUp = ({originalLink}) => {
             axios.post("/api/auth/signup", {email, password})
               .then(e=>{
                 if (e.status === 200) {
-                  dispatch(setToken(e.data));
+                  dispatch(setToken(e.data.token));
                   history.push(originalLink || "/");
                 } else {
                   throw Error;

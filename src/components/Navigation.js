@@ -30,13 +30,13 @@ export const Navigation = () => {
         { token && 
           <button className={styles.SignUpButton}
             onClick={e=>{
+              console.log('token:', token)
               e.preventDefault();
+              dispatch(rmToken());
               axios({
                 method: "post",
                 url:"/api/auth/logout",
                 headers: {"Authorization":"Bearer " + token}
-              }).then(e=>{
-                dispatch(rmToken());
               })
             }}
           >Log out</button>

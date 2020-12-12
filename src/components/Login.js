@@ -38,7 +38,7 @@ export const Login = ({originalLink}) => {
             axios.post("/api/auth/login", {email, password})
               .then(e=>{
                 if (e.status === 200) {
-                  localStorage.setItem("alvyBbt", e.data)
+                  localStorage.setItem("alvyBbt", e.data.token)
                   history.push(originalLink || "/");
                 } else {
                   throw Error;

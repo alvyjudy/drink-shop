@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from "react";
-import {useParams, useHistory} from "react-router-dom";
+import {useParams, useHistory, Redirect} from "react-router-dom";
 import axios from "axios";
 import {useSelector, useDispatch} from "react-redux";
 
 import styles from "./ProductDetail.css";
 import {addMinusItem} from "../redux/actions";
+import {SignUp} from "./SignUp";
 
 export const ProductDetail = () => {
   const {id} = useParams();
@@ -110,16 +111,29 @@ const Purchase = ({name, price, id}) => {
       <button className={styles.AddToCart}
         onClick={e=>{
           e.preventDefault();
-          axios.post("/api/cart/add-minus-item", [id, quantity], {
-            headers: {
-              "Content-Type":"application/json",
-              "Authorization": "Bearer " + token
-            }
-          }).then(res=>{
-            history.push("/cart");
-          }).catch(e=>{
-            console.log(e)
-          })
+          if (token !== undefined) {
+            axios.post("/api/cart/add-item-entry", {
+              itemCatalogId:id,
+              quantity,
+              sugar: 100,
+              ice: 100,
+              tapioca: 0,
+              pudding: 0,
+              grassjelly: 0,
+            }, {
+              headers: {
+                "Content-Type":"application/json",
+                "Authorization": "Bearer " + token
+              }
+            }).then(res=>{
+              history.push("/cart");
+            }).catch(e=>{
+              console.log(e)
+            })
+          } else {
+            history.push("/auth/sign-up")
+          }
+          
         }}
       >Add to cart</button>
       <button className={styles.BuyItNow}>Buy it now</button>
