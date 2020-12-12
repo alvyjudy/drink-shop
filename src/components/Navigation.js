@@ -30,7 +30,6 @@ export const Navigation = () => {
         { token && 
           <button className={styles.SignUpButton}
             onClick={e=>{
-              console.log('token:', token)
               e.preventDefault();
               dispatch(rmToken());
               axios({
