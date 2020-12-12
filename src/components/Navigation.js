@@ -44,17 +44,27 @@ export const Navigation = () => {
 
       </div>
       <div className={styles.container}>
-        <Link to="/products" className={styles.button}>
-          <span className={styles.ButtonText}>Products</span>
-        </Link>
-        <Link to="/">
+         <Link to="/">
           <img className={styles.logo} 
           src="/assets/logo.svg" 
           alt="Home"/>
         </Link>
-        <button className={styles.button}>
-          <Link to="/cart" className={styles.ButtonText}>My Order</Link>
-        </button>
+
+        <Link to="/products" className={styles.button}>
+          <span className={styles.ButtonText}>Products</span>
+        </Link>
+
+        <Link to="/cart" className={styles.button}>
+          <span className={styles.ButtonText}>Cart</span>
+        </Link>
+
+        <Link to="/orders" className={styles.button}>
+          <span className={styles.ButtonText}>Orders</span>
+        </Link>
+
+
+
+        
       </div>
     </div>
     
