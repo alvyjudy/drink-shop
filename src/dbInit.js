@@ -1,10 +1,12 @@
 const {pool} = require("./db");
 
-const SCHEMA = process.env.SCHEMA || "test";
+const SCHEMA = process.env.SCHEMA || "dev";
 const dbInit = async () => {
   await pool.query(`DROP SCHEMA IF EXISTS ${SCHEMA} CASCADE;`);
   await pool.query(`CREATE SCHEMA ${SCHEMA};`);
   await pool.query(`SET search_path TO ${SCHEMA};`);
+
+  await pool.query(`SHOW search_path;`).then(res=>{console.log(res.rows)})
 
   await pool.query(`CREATE TABLE IF NOT EXISTS users (
     user_id serial PRIMARY KEY,
@@ -55,7 +57,7 @@ const dbInit = async () => {
     order_id INT,
     FOREIGN KEY (order_id) REFERENCES users(user_id)
     ON DELETE CASCADE
-  )`)
+  );`)
 }
 
 module.exports = {dbInit}
