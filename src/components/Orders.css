@@ -18,6 +18,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
+  padding: 1em;
 }
 
 .OrderNum, .Name, .Address, .Phone {
@@ -27,4 +28,33 @@
 
 .Total, .Hst, .Subtotal {
   grid-column: -1 / -2;
+}
+
+.Total {
+  grid-row: 2 / 3;
+}
+
+.Hst {
+  grid-row: 3 / 4;
+}
+
+.Subtotal {
+  grid-row: 4 / 5;
+}
+
+.OrderedItems {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 1em;
+}
+
+.Item {
+  margin: 1em;
+  padding: 1em;
+  border: 1px black dashed;
+}
+
+.ItemName, .ItemQuantity, .ItemPrice, .Sugar,
+.Ice, .Tapioca, .Pudding, .Grassjelly {
+  margin: 0;
 }

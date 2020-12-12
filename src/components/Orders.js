@@ -10,7 +10,7 @@ export const Orders = () => {
   const token = useSelector(store=>store.token)
   const [orders, setOrders] = useState([]);
   const [query, setQuery] = useState(true);
-  const [products, setProducts] = useState();
+  const [products, setProducts] = useState([]);
 
   useEffect(()=>{
     if (token) {
@@ -64,7 +64,7 @@ export const Orders = () => {
                 <p className={styles.Name}>Name: {name}</p>
                 <p className={styles.Address}>Address: {address}</p>
                 <p className={styles.Phone}>Phone: {phone}</p>
-                <p className={styles.Total}>Total: {total}</p>
+                <p className={styles.Total}>Total: {total}$</p>
                 <p className={styles.Hst}>Hst (13%): {Math.round(total * 0.13 * 100)/100}$</p>
                 <p className={styles.Subtotal}>Subtotal: {Math.round(total * 1.13*100)/100}$</p>
               </div>
