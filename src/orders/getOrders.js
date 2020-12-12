@@ -22,7 +22,7 @@ const getOrders = () => async (req, res, next) => {
 
   const ordersTotal = await Promise.all(ordersCamel.map(async (order)=>{
     const orderedItems = (await client.query(`SELECT * FROM ordered_items 
-      WHERE order_id = $1`, [order.orderId])).rows
+      WHERE order_id = $1;`, [order.orderId])).rows
   
     const orderedItemsCamel = orderedItems.map(item=>{
       return {
