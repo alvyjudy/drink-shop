@@ -6,7 +6,7 @@ const dbInit = async () => {
   await pool.query(`CREATE SCHEMA ${SCHEMA};`);
   await pool.query(`SET search_path TO ${SCHEMA};`);
 
-  await pool.query(`SHOW search_path;`).then(res=>{console.log(res.rows)})
+  await pool.query(`SHOW search_path;`)
 
   await pool.query(`CREATE TABLE IF NOT EXISTS users (
     user_id serial PRIMARY KEY,
@@ -55,7 +55,7 @@ const dbInit = async () => {
     pudding INT,
     grassjelly INT,
     order_id INT,
-    FOREIGN KEY (order_id) REFERENCES users(user_id)
+    FOREIGN KEY (order_id) REFERENCES orders(order_id)
     ON DELETE CASCADE
   );`)
 }
