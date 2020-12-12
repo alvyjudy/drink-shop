@@ -13,6 +13,7 @@ import {Home} from "./components/Home";
 import {SignUp} from "./components/SignUp";
 import {Login} from "./components/LogIn";
 import {Cart} from "./components/Cart";
+import {Orders} from "./components/Orders";
 
 
 
@@ -45,6 +46,10 @@ const App = () => {
 
           <Route path="/cart">
             <Cart/>
+          </Route>
+
+          <Route path="/orders">
+            <Orders/>
           </Route>
 
           <Route>
