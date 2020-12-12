@@ -51,7 +51,7 @@ export const Login = ({originalLink}) => {
           }}>Login</button>
 
         <p className={styles.ErrorMessage}>{errorMessage}</p>
-        <Link to="/auth/login">Sign up for an account!</Link>
+        <Link to="/auth/sign-up">Sign up for an account!</Link>
       </div>
     </div>
   )
