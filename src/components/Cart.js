@@ -1,14 +1,16 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import {useSelector, useDispatch} from "react-redux";
+import {Link, useHistory, Redirect} from "react-router-dom";
 
 import styles from "./Cart.css";
 
 
 
 export const Cart = () => {
+  const history = useHistory();
   const token = useSelector(store=>store.token);
-  const [items, setItems] = useState();
+  const [items, setItems] = useState([]);
   const [products, setProducts] = useState();
   const [query, setQuery] = useState(true);
 
@@ -34,10 +36,13 @@ export const Cart = () => {
   }
   
   useEffect(()=>{
-    axios.get("/api/products")
+    if (token) {
+      axios.get("/api/products")
       .then(res=>{
         setProducts(res.data)
       })
+    }
+
   }, [])
 
   useEffect(()=>{
@@ -54,11 +59,25 @@ export const Cart = () => {
     }
   }, [query])
 
+  const total = items && items.reduce((acc, curr)=>{
+    const {price} = products.filter(item=> item.id === curr.itemCatalogId)[0]
+    return acc + price*curr.quantity
+  }, 0)
+
+  const [name, setName] = useState();
+  const [address, setAddress] = useState();
+  const [phone, setPhone] = useState();
+
 
   if (!token) {
-    return <p>Log in or sign up to add items</p>
-  } else if (!products || !items) {
-    return <div>Loading</div> 
+    return <Redirect to="/auth/sign-up"/>
+  } else if (items.length === 0) {
+    return (
+      <div className={styles.EmptyCart}>
+        <p className={styles.EmptyCartText}>Your cart is empty!</p>
+      </div>
+      
+    )
   } else {
     return (
       <div className={styles.Cart}>
@@ -304,6 +323,52 @@ export const Cart = () => {
        
             </div> 
           )})} 
+
+          <div className={styles.CheckOutBox}>
+            <input className={styles.OrderName} 
+              placeholder="Name"
+              onChange={e=>{
+                e.preventDefault();
+                setName(e.target.value);
+              }}
+            />
+            <input className={styles.OrderAddress}
+              placeholder="Address"
+              onChange={e=>{
+                e.preventDefault();
+                setAddress(e.target.value);
+            }}/>
+            <input className={styles.OrderPhone}
+              placeholder="Phone number"
+              onChange={e=>{
+                e.preventDefault();
+                setPhone(e.target.value);
+              }}
+            />
+            <p className={styles.Total}>Total: {total}$</p>   
+            <p className={styles.Hst}>HST(13%) {Math.round(total * 0.13 * 100)/100}$</p>
+            <p className={styles.Subtotal}>Subtotal: {Math.round(total * 1.13*100)/100}$</p>
+            <button className={styles.CheckOutButton}
+              onClick={e=>{
+                e.preventDefault();
+                axios.post("/api/orders/place-order", {
+                  address,
+                  phone,
+                  name
+                }, {
+                  headers: {
+                    "Content-Type":"application/json",
+                    "Authorization":"Bearer "+token
+                  }
+                }).then(res=>{
+                  history.push("/orders");
+                }).catch(e=>{
+                  console.log("Error in checkout button", e);
+                })
+              }}
+            >Place your order</button>
+          </div>
+          
       </div>
     )
   }
