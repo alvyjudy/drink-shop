@@ -5,9 +5,7 @@ const {pool} = require('../db');
 const checkLogin = () => async (req, res, next) => {
   try {
     const token = req.get("Authorization").split(" ")[1]
-    console.log('token', token)
     const {userId} = jwt.decode(token, "temporarySecret")
-    console.log('userId', userId)
     
     const result = (await pool.query(`SELECT 1 FROM session WHERE user_id = $1;`,
       [userId])).rows

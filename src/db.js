@@ -10,12 +10,12 @@ const pool = new Pool({
 
 module.exports = {pool: {
   query: (text, params) => {
-    console.log(text);
+    //console.log(text);
     return pool.query(text, params).then(res=>{
-      console.log(res.rows)
+      //console.log(res.rows)
       return res
     }).catch(e=>{
-      console.log(e)
+      //console.log(e)
       return e;
     });
   },
