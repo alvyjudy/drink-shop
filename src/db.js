@@ -15,7 +15,7 @@ module.exports = {pool: {
       //console.log(res.rows)
       return res
     }).catch(e=>{
-      //console.log(e)
+      console.log("SQL query error", e)
       return e;
     });
   },
