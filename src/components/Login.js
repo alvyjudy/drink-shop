@@ -12,9 +12,29 @@ export const Login = ({originalLink}) => {
 
   return (
     <div className={styles.AuthContainer}>
-      <div className={styles.LoginBox}>
+      <form className={styles.LoginBox}
+        onSubmit={e=>{
+          e.preventDefault();
+          axios.post("/api/auth/signup", {email, password})
+            .then(e=>{
+              if (e.status === 200) {
+                dispatch(setToken(e.data.token));
+                history.push(originalLink || "/");
+              } else {
+                throw Error;
+              }
+            })
+            .catch(e=>{
+              console.log(e);
+              setErrorMessage("Error")
+            })
+        }}>
+
         <p className={styles.LoginTitle}>Login to your account</p>
+
         <input className={styles.InputEmail}
+          required
+          type="email"
           placeholder="Email address"
           onChange={e=>{
             e.preventDefault();
@@ -24,7 +44,9 @@ export const Login = ({originalLink}) => {
         />
 
         <input className={styles.InputPassword}
-          placeholder="Password "
+          required
+          type="password"
+          placeholder="Password"
           onChange={e=>{
             e.preventDefault();
             setPassword(e.target.value);
@@ -32,27 +54,13 @@ export const Login = ({originalLink}) => {
           value={password}
         />
 
-        <button className={styles.LoginButton}
-          onClick={e=>{
-            e.preventDefault();
-            axios.post("/api/auth/login", {email, password})
-              .then(e=>{
-                if (e.status === 200) {
-                  localStorage.setItem("alvyBbt", e.data.token)
-                  history.push(originalLink || "/");
-                } else {
-                  throw Error;
-                }
-              })
-              .catch(e=>{
-                console.log(e);
-                setErrorMessage("Error")
-              })
-          }}>Login</button>
+        <button type="submit" className={styles.LoginButton}>
+          Login
+        </button>
 
         <p className={styles.ErrorMessage}>{errorMessage}</p>
         <Link to="/auth/sign-up">Sign up for an account!</Link>
-      </div>
+      </form>
     </div>
   )
 }

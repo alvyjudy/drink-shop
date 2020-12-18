@@ -324,21 +324,46 @@ export const Cart = () => {
             </div> 
           )})} 
 
-          <div className={styles.CheckOutBox}>
+          <form className={styles.CheckOutBox}
+            onSubmit={e=>{
+              e.preventDefault();
+              axios.post("/api/orders/place-order", {
+                address,
+                phone,
+                name
+              }, {
+                headers: {
+                  "Content-Type":"application/json",
+                  "Authorization":"Bearer "+token
+                }
+              }).then(res=>{
+                history.push("/orders");
+              }).catch(e=>{
+                console.log("Error in checkout button", e);
+              })
+            }}
+          >
+
             <input className={styles.OrderName} 
+              required
               placeholder="Name"
               onChange={e=>{
                 e.preventDefault();
                 setName(e.target.value);
               }}
             />
+
             <input className={styles.OrderAddress}
+              required
               placeholder="Address"
               onChange={e=>{
                 e.preventDefault();
                 setAddress(e.target.value);
             }}/>
+
             <input className={styles.OrderPhone}
+              required
+              type="text"
               placeholder="Phone number"
               onChange={e=>{
                 e.preventDefault();
@@ -349,25 +374,8 @@ export const Cart = () => {
             <p className={styles.Hst}>HST(13%) {Math.round(total * 0.13 * 100)/100}$</p>
             <p className={styles.Subtotal}>Subtotal: {Math.round(total * 1.13*100)/100}$</p>
             <button className={styles.CheckOutButton}
-              onClick={e=>{
-                e.preventDefault();
-                axios.post("/api/orders/place-order", {
-                  address,
-                  phone,
-                  name
-                }, {
-                  headers: {
-                    "Content-Type":"application/json",
-                    "Authorization":"Bearer "+token
-                  }
-                }).then(res=>{
-                  history.push("/orders");
-                }).catch(e=>{
-                  console.log("Error in checkout button", e);
-                })
-              }}
             >Place your order</button>
-          </div>
+          </form>
           
       </div>
     )
