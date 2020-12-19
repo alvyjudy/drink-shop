@@ -17,7 +17,6 @@ export const Orders = () => {
       axios.get("/api/orders/get-orders", {
         headers: {"Authorization":"Bearer " + token}
       }).then(res=>{
-        console.log(res.data);
         setOrders(res.data)
       })
     }
