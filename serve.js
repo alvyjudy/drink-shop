@@ -9,7 +9,7 @@ app.use(express.static("dist"));
 const BACKEND = (process.env.ENV === "staging" ? 
     "https://alvy-bbt-backend-staging.herokuapp.com" : 
     process.env.ENV === "production" ? 
-    "whatever for now" :
+    "https://alvy-bbt-backend-prod.herokuapp.com/" :
     null
 )
 
