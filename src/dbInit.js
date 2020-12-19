@@ -1,10 +1,9 @@
 const {pool} = require("./db");
 
-const SCHEMA = process.env.SCHEMA || "dev";
+const SCHEMA = "public";
 const dbInit = async () => {
   await pool.query(`DROP SCHEMA IF EXISTS ${SCHEMA} CASCADE;`);
   await pool.query(`CREATE SCHEMA ${SCHEMA};`);
-  await pool.query(`SET search_path TO ${SCHEMA};`);
 
   await pool.query(`SHOW search_path;`)
 
