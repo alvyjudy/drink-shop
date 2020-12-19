@@ -39,6 +39,8 @@ export const Orders = () => {
     return <div className={styles.EmptyOrders}>
       <p>You haven't placed any orders!</p>
     </div>
+  } else if (!products) {
+    return null
   } else {
     return (
       <div className={styles.Orders}>
