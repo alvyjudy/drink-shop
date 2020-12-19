@@ -1,4 +1,5 @@
 const {Pool} = require("pg");
+console.log("ENV variables:", process.env)
 
 const pool = new Pool(
   process.env.ENV === "production" ? 
@@ -20,6 +21,9 @@ module.exports = {pool: {
       console.log("SQL query error", e)
       return e;
     });
+  },
+  end:()=>{
+    return pool.end()
   },
   connect: () => {
     return pool.connect();
