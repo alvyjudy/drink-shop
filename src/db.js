@@ -1,5 +1,4 @@
 const {Pool} = require("pg");
-console.log("ENV variables:", process.env)
 
 const pool = new Pool(
   process.env.ENV === "production" ? 
