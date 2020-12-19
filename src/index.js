@@ -11,7 +11,7 @@ import {ProductDetail} from "./components/ProductDetail";
 import {NoMatch} from "./components/NoMatch";
 import {Home} from "./components/Home";
 import {SignUp} from "./components/SignUp";
-import {Login} from "./components/LogIn";
+import {Login} from "./components/Login";
 import {Cart} from "./components/Cart";
 import {Orders} from "./components/Orders";
 
