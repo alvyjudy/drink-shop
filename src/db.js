@@ -1,7 +1,7 @@
 const {Pool} = require("pg");
 
 const pool = new Pool(
-  process.env.ENV === "production" ? 
+  process.env.ENV === "production" || "staging" ? 
   {connectionString: process.env.DATABASE_URL} :
   {user: "dev",
     host: "localhost",
