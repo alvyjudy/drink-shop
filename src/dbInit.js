@@ -63,6 +63,7 @@ const dbInit = async () => {
 module.exports = {dbInit}
 if (require.main === module) {
   dbInit().then(res=>{
+    console.log("Database reset and initialized");
     pool.end();
   });
 }
