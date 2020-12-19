@@ -3,7 +3,7 @@ console.log("ENV variables:", process.env)
 
 const pool = new Pool(
   process.env.ENV === "production" ? 
-  {connectionString: process.env.DATABASSE_URL} :
+  {connectionString: process.env.DATABASE_URL} :
   {user: "dev",
     host: "localhost",
     database: "local",
