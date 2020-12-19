@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "start": "node serve.js",
-    "startLocal": "export ENV=local; nodemon serve.js"
+    "startLocal": "export ENV=local; nodemon serve.js",
+    "initRemoteDb":"heroku run -a alvy-bbt-backend node src/dbInit.js"
   },
   "dependencies": {
     "axios": "^0.21.0",
