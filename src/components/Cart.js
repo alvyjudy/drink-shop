@@ -59,7 +59,7 @@ export const Cart = () => {
     }
   }, [query])
 
-  const total = items && items.reduce((acc, curr)=>{
+  const total = items.length !== 0 && items.reduce((acc, curr)=>{
     const {price} = products.filter(item=> item.id === curr.itemCatalogId)[0]
     return acc + price*curr.quantity
   }, 0)
@@ -76,7 +76,6 @@ export const Cart = () => {
       <div className={styles.EmptyCart}>
         <p className={styles.EmptyCartText}>Your cart is empty!</p>
       </div>
-      
     )
   } else {
     return (
