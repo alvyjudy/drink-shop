@@ -6,20 +6,25 @@ const app = express();
 
 app.use(express.static("dist"));
 
+const BACKEND = (process.env.ENV === "staging" ? 
+    "https://alvy-bbt-backend-staging.herokuapp.com" : 
+    process.env.ENV === "production" ? 
+    "whatever for now" :
+    null
+)
+
 app.use("/api", createProxyMiddleware({
-    target:"https://backend-dot-meadowvale.nn.r.appspot.com",
+    target:BACKEND,
     changeOrigin:true,
     pathRewrite:{
         "^/api":""
     }
 }))
 
+
 app.use("/assets", createProxyMiddleware({
-    target:"https://storage.googleapis.com/alvybbt",
+    target:"https://alvyjudy.github.io/bbt-shop-media/",
     changeOrigin:true,
-    pathRewrite:{
-        "^/assets":""
-    }
 }))
 
 app.get("*", (req, res) => {
