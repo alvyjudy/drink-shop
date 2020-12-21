@@ -1,13 +1,20 @@
 const {Pool} = require("pg");
 
-const pool = new Pool(
-  process.env.ENV === "production" || "staging" ? 
+const connectionConfig = (
+  process.env.ENV === "production" || 
+  process.env.ENV === "staging"
+  ) ? 
   {connectionString: process.env.DATABASE_URL} :
-  {user: "dev",
+  {
+    user: "dev",
     host: "localhost",
     database: "local",
     password: "localdev",
-    port: 5432}
+    port: 5432
+  };
+
+const pool = new Pool(
+  connectionConfig
   );
 
 module.exports = {pool: {
@@ -17,7 +24,7 @@ module.exports = {pool: {
       //console.log(res.rows)
       return res
     }).catch(e=>{
-      console.log("SQL query error", e)
+      console.log("SQL query error for statement", text,"\n", e)
       return e;
     });
   },
