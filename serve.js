@@ -3,7 +3,7 @@ const {dbInit} = require("./src/dbInit");
 
 if (process.env.ENV === "local") {
   dbInit().then(res=>{
-    app.listen(3002, ()=>{console.log("App listening on port 3001")})
+    app.listen(3002, ()=>{console.log("App listening on port 3002")})
   })
 } else {
   app.listen(process.env.PORT, ()=>{console.log("App listening on port " + process.env.PORT)})
