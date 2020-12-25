@@ -28,6 +28,14 @@ router.get("/products", products(), (req, res)=>{
   res.json(req.products)
 })
 
+router.post("/auth/validate-token", 
+  //Authorization: Bearer <jwtToken>
+  checkLogin(),
+  (req, res)=>{
+    res.status(200).send("Valid token");
+  }
+)
+
 
 router.post("/auth/signup", 
   //Content-Type: application/json
