@@ -1,11 +1,53 @@
-.TopBannerContainer {
-  height: 3em;
-  background-color: #fbefcc;
-
+.navigation {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  @media (min-width: 700px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.primaryNavigation {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+
+  @media (min-width: 700px) {
+    flex-direction: row;
+  }
+}
+
+.logo {
+  height: 5em;
+}
+
+.button {
+  font-size: 2em;
+  font-weight: bold;
+  height: 2em;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+  padding: 0 0.3em 0 0.3em;
+}
+
+.ButtonText {
+  text-decoration: none;
+}
+
+.secondaryNavigation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media (min-width: 700px) {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
 }
 
 .GithubLogo {
@@ -13,9 +55,8 @@
   height: 1.5em;
 }
 
-
 .BlogLink {
-  margin: 0 0 0 1em;
+  margin: 0;
   font-weight: bold;
   font-size: 1.5em;
   color: black;
@@ -29,44 +70,4 @@
   text-decoration: underline;
   color: black;
   border: 0;
-  background-color: #fbefcc;
-}
-
-
-
-.container, .button {
-  background-color: #f9ccac;
-}
-
-.container {
-  min-height: 10em;
-  padding: 0 1em 0 1em;
-
-
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.logo {
-  height: 5em;
-}
-
-
-.button {
-  font-size: 2em;
-  font-weight: bold;
-  border: 0.05em black solid;
-  height: 2em;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: black;
-  padding: 0 0.3em 0 0.3em;
-}
-
-.ButtonText {
-  text-decoration: none;
 }

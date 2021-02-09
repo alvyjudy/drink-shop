@@ -10,8 +10,25 @@ export const Navigation = () => {
   const token = useSelector((store) => store.token);
   const dispatch = useDispatch();
   return (
-    <div>
-      <div className={styles.TopBannerContainer}>
+    <div className={styles.navigation}>
+      <div className={styles.primaryNavigation}>
+        <Link to="/">
+          <img className={styles.logo} src="/assets/logo.svg" alt="Home" />
+        </Link>
+
+        <Link to="/products" className={styles.button}>
+          <span className={styles.ButtonText}>Products</span>
+        </Link>
+
+        <Link to="/cart" className={styles.button}>
+          <span className={styles.ButtonText}>Cart</span>
+        </Link>
+
+        <Link to="/orders" className={styles.button}>
+          <span className={styles.ButtonText}>Orders</span>
+        </Link>
+      </div>
+      <div className={styles.secondaryNavigation}>
         <a
           className={styles.BlogLink}
           href="https://github.com/alvyjudy/alveoli-bubble-tea-shop-frontend"
@@ -20,12 +37,6 @@ export const Navigation = () => {
             className={styles.GithubLogo}
             src="https://cdn.iconscout.com/icon/free/png-512/github-153-675523.png"
           />
-        </a>
-        <a
-          href="https://alvyjudy-58477.medium.com/creating-a-website-for-a-bubble-tea-shop-v1-1-14ff3b397781"
-          className={styles.BlogLink}
-        >
-          blog
         </a>
 
         {!token && (
@@ -50,23 +61,6 @@ export const Navigation = () => {
             Log out
           </button>
         )}
-      </div>
-      <div className={styles.container}>
-        <Link to="/">
-          <img className={styles.logo} src="/assets/logo.svg" alt="Home" />
-        </Link>
-
-        <Link to="/products" className={styles.button}>
-          <span className={styles.ButtonText}>Products</span>
-        </Link>
-
-        <Link to="/cart" className={styles.button}>
-          <span className={styles.ButtonText}>Cart</span>
-        </Link>
-
-        <Link to="/orders" className={styles.button}>
-          <span className={styles.ButtonText}>Orders</span>
-        </Link>
       </div>
     </div>
   );
