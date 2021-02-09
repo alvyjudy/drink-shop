@@ -3,7 +3,7 @@ import axios from "axios";
 import {useSelector, useDispatch} from "react-redux";
 import {Link, useHistory, Redirect} from "react-router-dom";
 
-import styles from "./Cart.css";
+import styles from "./Cart.scss";
 
 
 

@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 
-import styles from "./Home.css";
+import styles from "./Home.scss";
 
 export const Home = () => {
   return <div className={styles.Home}>

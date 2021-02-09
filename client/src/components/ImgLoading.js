@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-import styles from "./ImgLoading.css";
+import styles from "./ImgLoading.scss";
 
 export const ImgLoading = ({src, alt, fill}) => {
   const [loaded, setLoaded] = useState(false);

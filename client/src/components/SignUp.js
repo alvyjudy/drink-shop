@@ -3,7 +3,7 @@ import {Link, useHistory} from "react-router-dom";
 import axios from "axios";
 import {useDispatch} from "react-redux"
 
-import styles from "./SignUp.css";
+import styles from "./SignUp.scss";
 import {setToken} from "../redux/actions";
 
 export const SignUp = ({originalLink}) => {

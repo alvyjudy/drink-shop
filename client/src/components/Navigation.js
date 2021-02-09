@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import axios from "axios";
 
-import styles from "./Navigation.css";
+import styles from "./Navigation.scss";
 import {rmToken} from "../redux/actions";
 
 export const Navigation = () => {

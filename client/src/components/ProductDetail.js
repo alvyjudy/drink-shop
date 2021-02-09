@@ -3,7 +3,7 @@ import {useParams, useHistory, Redirect} from "react-router-dom";
 import axios from "axios";
 import {useSelector, useDispatch} from "react-redux";
 
-import styles from "./ProductDetail.css";
+import styles from "./ProductDetail.scss";
 import {addMinusItem} from "../redux/actions";
 import {SignUp} from "./SignUp";
 

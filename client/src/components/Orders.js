@@ -3,7 +3,7 @@ import axios from "axios";
 import {useSelector} from "react-redux";
 import {Redirect} from "react-router-dom";
 
-import styles from "./Orders.css";
+import styles from "./Orders.scss";
 
 
 export const Orders = () => {
