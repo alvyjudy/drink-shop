@@ -39,7 +39,7 @@
 }
 
 .container {
-  height: 10em;
+  min-height: 10em;
   padding: 0 1em 0 1em;
 
 
@@ -47,6 +47,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .logo {
