@@ -1,0 +1,23 @@
+$elevation1: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+
+$font-bold: 700;
+$font-medium: 500;
+$font-regular: 400;
+$font-light: 300;
+
+$colorPrimary: orange;
+
+@mixin emptyButton() {
+  border: 0;
+  background-color: transparent;
+  outline: none;
+}
+
+@mixin containedButton($backgroundColor: $colorPrimary, $textColor: white) {
+  border: 0;
+  background-color: $backgroundColor;
+  outline: none;
+  padding: 1em;
+  border-radius: 0.2em;
+  color: $textColor;
+}
