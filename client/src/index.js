@@ -1,35 +1,33 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import {Provider} from "react-redux";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Provider } from "react-redux";
 
-
-import {store} from "./redux/reducer";
-import {Navigation} from "./components/Navigation";
-import {ProductsView} from "./components/ProductsView";
-import {ProductDetail} from "./components/ProductDetail";
-import {NoMatch} from "./components/NoMatch";
-import {Home} from "./components/Home";
-import {SignUp} from "./components/SignUp";
-import {Login} from "./components/Login";
-import {Cart} from "./components/Cart";
-import {Orders} from "./components/Orders";
-
-
+import { store } from "./redux/reducer";
+import { Navigation } from "./components/Navigation";
+import { ProductsView } from "./components/ProductsView";
+import { ProductDetail } from "./components/ProductDetail";
+import { NoMatch } from "./components/NoMatch";
+import { Home } from "./components/Home";
+import { SignUp } from "./components/SignUp";
+import { Login } from "./components/Login";
+import { Cart } from "./components/Cart";
+import { Orders } from "./components/Orders";
+import "./styles/globalStyles.css";
 
 const App = () => {
   return (
     <Provider store={store}>
       <Router>
-        <Navigation/>
+        <Navigation />
 
         <Switch>
           <Route exact path="/">
-            <Home/>
+            <Home />
           </Route>
 
           <Route path="/products">
-            <ProductsView/>
+            <ProductsView />
           </Route>
 
           <Route path="/product/:id">
@@ -37,31 +35,28 @@ const App = () => {
           </Route>
 
           <Route path="/auth/sign-up">
-            <SignUp/>
+            <SignUp />
           </Route>
 
           <Route path="/auth/login">
-            <Login/>
+            <Login />
           </Route>
 
           <Route path="/cart">
-            <Cart/>
+            <Cart />
           </Route>
 
           <Route path="/orders">
-            <Orders/>
+            <Orders />
           </Route>
 
           <Route>
-            <NoMatch/>
+            <NoMatch />
           </Route>
-
         </Switch>
-        
-
       </Router>
     </Provider>
-  )
-}
+  );
+};
 
 ReactDOM.render(<App />, document.getElementById("root"));
