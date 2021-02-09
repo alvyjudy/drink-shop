@@ -1,0 +1,71 @@
+.TopBannerContainer {
+  height: 3em;
+  background-color: #fbefcc;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.GithubLogo {
+  object-fit: cover;
+  height: 1.5em;
+}
+
+
+.BlogLink {
+  margin: 0 0 0 1em;
+  font-weight: bold;
+  font-size: 1.5em;
+  color: black;
+  text-decoration: none;
+}
+
+.SignUpButton {
+  font-size: 1.5em;
+  margin: 0 1em 0 1em;
+  font-weight: bolder;
+  text-decoration: underline;
+  color: black;
+  border: 0;
+  background-color: #fbefcc;
+}
+
+
+
+.container, .button {
+  background-color: #f9ccac;
+}
+
+.container {
+  height: 10em;
+  padding: 0 1em 0 1em;
+
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  height: 5em;
+}
+
+
+.button {
+  font-size: 2em;
+  font-weight: bold;
+  border: 0.05em black solid;
+  height: 2em;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+  padding: 0 0.3em 0 0.3em;
+}
+
+.ButtonText {
+  text-decoration: none;
+}

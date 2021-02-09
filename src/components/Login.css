@@ -1,0 +1,35 @@
+.AuthContainer {
+  margin: 2em auto;
+  width: 40em;
+  height: 40em;
+}
+
+.LoginBox {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.LoginTitle {
+  font-size: 2em;
+}
+
+.InputEmail, .InputPassword {
+  width: 20em;
+  height: 3em;
+  margin: 1em;
+}
+
+.LoginButton {
+  margin: 1em;
+  background-color: #f9ccac;
+  border: 0;
+  color: black;
+  width: 15em;
+  height:3em;
+}
+

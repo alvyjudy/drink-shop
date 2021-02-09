@@ -1,0 +1,48 @@
+.Container, .ContainerLoading {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.ContainerLoading {
+  border: 1px solid black;
+}
+
+.HideSpinner {
+  display: none;
+}
+
+.ShowSpinner {
+  width: 80%;
+  margin: 3em 0 3em 0;
+  height: 1em;
+  border: 0;
+  animation: animateBg 3s infinite ease-in;
+  background-image: linear-gradient(90deg, whitesmoke, lightgrey, whitesmoke, lightgrey);
+  background-size: 300% 100%;
+}
+
+@keyframes animateBg {
+  0% {
+    background-position: 100% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.ShowImgFillY {
+  object-fit: cover;
+  height: 100%;
+}
+
+.ShowImgFillX {
+  object-fit: cover;
+  width: 100%;
+}
+
+.HideImg {
+  object-fit: cover;
+  display: none;
+}
