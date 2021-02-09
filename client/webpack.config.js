@@ -5,7 +5,7 @@ module.exports = {
   entry:"./src/index.js",
   mode:"development",
   output: {
-    path: path.join(__dirname, "dist"),
+    path: path.join(__dirname, "../server/dist"),
   },
   devtool: "inline-source-map",
   module:{
@@ -30,17 +30,15 @@ module.exports = {
     ],
   },
   devServer:{
-    contentBase:"./dist",
+    contentBase:"../server/dist",
     port: 3001,
     host: "0.0.0.0",
     proxy: {
       "/api": {
         target:"http://localhost:3002",
-        pathRewrite:{"^/api":""}
       },
       "/assets":{
-        target:"http://localhost:3003",
-        pathRewrite: {"^/assets":""},
+        target:"http://localhost:3002",
       }
     },
     historyApiFallback: true,

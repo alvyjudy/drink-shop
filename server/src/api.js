@@ -1,5 +1,4 @@
 const express = require("express");
-const app = express();
 const router = express.Router();
 
 const {db} = require("./db");
@@ -125,6 +124,4 @@ router.get("/orders/get-orders",
 
 
 
-app.use('/', router);
-
-module.exports = {app}
+module.exports = router;
