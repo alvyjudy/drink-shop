@@ -6,7 +6,7 @@
   "author": "alvy <alvyjudy@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node serve.js",
+    "start": "node index.js",
     "startLocal": "export NODE_ENV=development; nodemon index.js",
     "initRemoteDb": "heroku run -a alvy-drink-shop node src/dbInit.js"
   },
