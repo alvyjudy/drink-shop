@@ -122,16 +122,17 @@ export const Cart = () => {
             return (
               <div key={i} className={styles.CartItem}>
                 <div className={styles.itemOverview}>
-                  <img
-                    src={"/assets/" + thumbnail}
-                    className={styles.CartItemPic}
-                  />
+                  <div className={styles.cartItemPicContainer}>
+                    <img
+                      src={"/assets/" + thumbnail}
+                      className={styles.CartItemPic}
+                    />
+                  </div>
                   <div className={styles.itemDetail}>
                     <p className={styles.ProductName}>{name}</p>
                     <p className={styles.ProductPrice}>${price}</p>
-
+                    <p className={styles.ProductQuantity}>Qty: {quantity}</p>
                     <div className={styles.ProductQuantityContainer}>
-                      <p className={styles.ProductQuantity}>Qty: {quantity}</p>
                       <button
                         className={styles.adjustQuantityButton}
                         onClick={(e) => {
@@ -167,7 +168,6 @@ export const Cart = () => {
                         -
                       </button>
                     </div>
-
                     <button
                       className={styles.RemoveButton}
                       onClick={(e) => {

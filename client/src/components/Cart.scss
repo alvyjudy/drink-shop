@@ -27,55 +27,31 @@
 
 .itemOverview {
   display: flex;
+  height: 15em;
+}
+
+.cartItemPicContainer {
+  flex: 1 1;
+  height: 100%;
+  overflow: hidden;
+  margin: 1em;
 }
 
 .CartItemPic {
   object-fit: cover;
-  width: 10em;
-  flex: 1 1;
+  height: 100%;
 }
 
 .itemDetail {
-  flex: 2 1;
+  flex: 1 1;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-around;
 }
 
-.ProductName {
-  margin: 0;
-}
-
-.ProductPrice {
-  margin: 0;
-  grid-row: 2 / 3;
-  grid-column: 2 / 3;
-}
-
 .ProductQuantityContainer {
-  grid-row: 3 / 4;
-  grid-column: 2 / 3;
-
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr 1fr 2fr;
-}
-
-.ProductQuantity {
-  grid-row: 1 / 2;
-  grid-column: 1 / 4;
-  margin: 0;
-}
-
-.AddButton {
-  grid-row: 2 / 3;
-  grid-column: 2 / 3;
-}
-
-.MinusButton {
-  grid-row: 2 / 3;
-  grid-column: 1 / 2;
+  display: flex;
 }
 
 .RemoveButton {
