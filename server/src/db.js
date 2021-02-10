@@ -1,15 +1,15 @@
 const { Pool } = require("pg");
 
 const connectionConfig =
-  process.env.NODE_ENV === "production" || process.env.NODE_ENV === "staging"
-    ? { connectionString: process.env.DATABASE_URL }
-    : {
+  process.env.NODE_ENV === "development"
+    ? {
         user: "dev",
         host: "localhost",
         database: "local",
         password: "localdev",
         port: 5432,
-      };
+      }
+    : { connectionString: process.env.DATABASE_URL };
 
 const pool = new Pool(connectionConfig);
 

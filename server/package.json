@@ -7,9 +7,8 @@
   "license": "MIT",
   "scripts": {
     "start": "node serve.js",
-    "startLocal": "export NODE_ENV=development; nodemon serve.js",
-    "initRemoteDbStaging": "heroku run -a alvy-bbt-backend-staging node src/dbInit.js",
-    "initRemoteDbProd": "heroku run -a alvy-bbt-backend-prod node src/dbInit.js"
+    "startLocal": "export NODE_ENV=development; nodemon index.js",
+    "initRemoteDb": "heroku run -a alvy-drink-shop node src/dbInit.js"
   },
   "dependencies": {
     "axios": "^0.21.0",
