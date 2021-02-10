@@ -2,19 +2,13 @@
 
 .Home {
   margin: 5em auto;
-  height: 60em;
-
-  display: grid;
-  grid-template-rows: 60% 40%;
 }
 
 .PicsContainer {
-  grid-row: 1 / 2;
-
   overflow: hidden;
-
+  height: 30em;
   display: grid;
-  grid-template-rows: 20% 20% 20% 20% 20%;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-template-columns: 40% 20% 40%;
   align-items: center;
   justify-items: center;
@@ -24,9 +18,7 @@
   grid-row: 2 / 3;
   grid-column: 1 / 4;
   align-self: end;
-
   color: white;
-  font-family: "Courier New", Courier, monospace;
   font-size: 2em;
   z-index: 1;
   margin: 1em;
@@ -37,10 +29,9 @@
   grid-column: 2 / 3;
   align-self: start;
 
-  margin: 1em;
+  @include theme.containedButton();
   height: 3em;
   width: 8em;
-  background-color: #f4a688;
   border: 0;
   color: white;
   z-index: 1;
@@ -77,9 +68,8 @@
 }
 
 .Slider {
-  grid-row: 5 / 6;
+  grid-row: 4 / 5;
   grid-column: 1 / 4;
-
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -92,57 +82,35 @@
   background-color: white;
   border-radius: 1em;
   outline: none;
+  box-shadow: none;
+  z-index: 3;
 }
 
 .SubscribeBoxContainer {
-  grid-row: 2 / 3;
-
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-}
-
-.SubscribeBoxTitleContainer {
-  grid-row: 1 / 2;
-
-  justify-items: start;
-  padding: 0 0 0 4em;
-  background-color: #fbefcc;
-
-  display: grid;
-  grid-template-rows: 2fr 1fr;
+  margin: 3em 1em;
+  box-shadow: theme.$elevation1;
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
 }
 
 .SubscribeBoxTitle {
-  grid-row: 1 / 2;
-  align-self: end;
   font-size: 2em;
 }
 
 .SubscribeBoxSubTitle {
-  grid-row: 2 / 3;
   font-size: 1em;
 }
 
-.SubscribeBoxInputContainer {
-  grid-row: 2 / 3;
-
-  padding: 0 0 0 4em;
-  background-color: #f4a688;
-
-  display: grid;
-  grid-template-rows: 4fr 1fr 4fr;
-}
-
 .SubscribeInputBox {
-  grid-row: 1 / 2;
-  align-self: end;
   height: 4em;
   width: 20em;
+  margin: 2em 0;
 }
 
 .SubscribeButton {
-  grid-row: 3 / 4;
-  align-self: start;
   height: 4em;
   width: 10em;
+  @include theme.containedButton();
+  margin: 0;
 }
