@@ -1,0 +1,12 @@
+{
+  "name": "drink-shop",
+  "private":true,
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/alvyjudy/drink-shop.git",
+  "author": "alvy <alvyjudy@gmail.com>",
+  "license": "MIT",
+  "workspaces":[
+    "client", "server"
+  ]
+}
