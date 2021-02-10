@@ -8,5 +8,9 @@
   "license": "MIT",
   "workspaces":[
     "client", "server"
-  ]
+  ],
+  "scripts": {
+    "build":"yarn workspace client run build",
+    "startLocal":"yarn workspace server run startLocal"
+  }
 }
