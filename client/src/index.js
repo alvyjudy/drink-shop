@@ -10,7 +10,6 @@ import { ProductDetail } from "./components/ProductDetail";
 import { NoMatch } from "./components/NoMatch";
 import { Home } from "./components/Home";
 import { SignUp } from "./components/SignUp";
-import { Login } from "./components/Login";
 import { Cart } from "./components/Cart";
 import { Orders } from "./components/Orders";
 import "./styles/globalStyles.css";
@@ -36,10 +35,6 @@ const App = () => {
 
           <Route path="/auth/sign-up">
             <SignUp />
-          </Route>
-
-          <Route path="/auth/login">
-            <Login />
           </Route>
 
           <Route path="/cart">
