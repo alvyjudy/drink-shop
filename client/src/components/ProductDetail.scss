@@ -2,8 +2,12 @@
 
 .ProductDetail {
   box-shadow: theme.$elevation1;
-  margin: 1em auto;
+  margin: 1em;
   max-width: 500px;
+
+  @media (min-width: theme.$phoneBreakpoint) {
+    margin: auto;
+  }
 }
 
 .ImageViewer {
