@@ -18,7 +18,6 @@ export const ProductsView = (props) => {
       });
   }, []);
 
-  console.log("products", products);
   return (
     <div className={styles.ProductsView}>
       {products.map((item) => {
