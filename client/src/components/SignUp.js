@@ -62,7 +62,6 @@ export const SignUp = ({ originalLink }) => {
             Log in
           </button>
         </div>
-
         <input
           className={styles.inputField}
           required
@@ -73,7 +72,6 @@ export const SignUp = ({ originalLink }) => {
           }}
           value={email}
         />
-
         <input
           className={styles.inputField}
           required
@@ -84,11 +82,21 @@ export const SignUp = ({ originalLink }) => {
           }}
           value={password}
         />
-
         <button type="submit" className={styles.signUpButton}>
           {signupPage ? "Sign up" : "Log in"}
         </button>
-
+        {signupPage && (
+          <button
+            type="button"
+            className={styles.demoButton}
+            onClick={() => {
+              setEmail(`testUser${Date.now()}@mail.com`);
+              setPassword(`1234`);
+            }}
+          >
+            demo
+          </button>
+        )}
         <p className={styles.ErrorMessage}>{errorMessage}</p>
       </form>
     </div>

@@ -14,6 +14,7 @@
   align-items: center;
   box-shadow: theme.$elevation1;
   padding: 1em 0;
+  position: relative;
 }
 
 .inputField {
@@ -23,7 +24,18 @@
 
 .signUpButton {
   @include theme.containedButton(theme.$colorPrimary);
-  width: 8em;
+  width: 10em;
+  margin: 0.3em;
+}
+
+.demoButton {
+  @include theme.containedButton(theme.$colorPrimary);
+  margin: 0.3em;
+  width: 5em;
+  border-radius: 2em;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 
 .tab {
