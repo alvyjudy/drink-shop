@@ -14,7 +14,7 @@
   border: 0;
   margin: 1em auto;
   padding: 0;
-  width: 18em;
+  max-width: 18em;
   height: 30em;
   box-shadow: theme.$elevation1;
   display: grid;
@@ -51,7 +51,6 @@
   font-size: 1.4em;
   font-weight: bold;
   margin: 0;
-  font-family: "Courier New", Courier, monospace;
 }
 
 .Price {
@@ -63,5 +62,4 @@
   color: black;
   opacity: 1.1;
   font-size: 0.9em;
-  font-family: "Courier New", Courier, monospace;
 }

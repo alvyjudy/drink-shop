@@ -67,8 +67,13 @@
 
 .Pic {
   object-fit: cover;
-  height: 100%;
   opacity: 0.5;
+  height: 100%;
+
+  @media (min-width: theme.$phoneBreakpoint) {
+    width: 100%;
+    height: auto;
+  }
 }
 
 .Slider {
