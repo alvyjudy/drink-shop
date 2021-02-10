@@ -7,6 +7,8 @@ $font-light: 300;
 
 $colorPrimary: orange;
 
+$phoneBreakpoint: 700px;
+
 @mixin emptyButton() {
   border: 0;
   background-color: transparent;
