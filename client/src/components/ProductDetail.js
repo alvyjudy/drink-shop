@@ -1,143 +1,151 @@
-import React, {useState, useEffect} from "react";
-import {useParams, useHistory, Redirect} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams, useHistory, Redirect } from "react-router-dom";
 import axios from "axios";
-import {useSelector, useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import styles from "./ProductDetail.scss";
-import {addMinusItem} from "../redux/actions";
-import {SignUp} from "./SignUp";
+import { addMinusItem } from "../redux/actions";
+import { SignUp } from "./SignUp";
 
 export const ProductDetail = () => {
-  const {id} = useParams();
+  const { id } = useParams();
   const [product, setProduct] = useState();
 
-  useEffect(()=>{
-    return axios.get("/api/products")
-      .then(res=>{
-        
-        const product = res.data.filter(item=>{
-          return item.id.toString() === id
-        })[0]
-  
-        setProduct(product)
-      })
-  }, [])
+  useEffect(() => {
+    return axios.get("/api/products").then((res) => {
+      const product = res.data.filter((item) => {
+        return item.id.toString() === id;
+      })[0];
 
-  return ( product ? 
+      setProduct(product);
+    });
+  }, []);
+
+  return product ? (
     <div className={styles.ProductDetail}>
-      <ImageViewer id={product.id} mainPic={product.mainPic} sidePics={product.sidePics}/>
-      <Purchase id={product.id} name={product.name} price={product.price}/>
-    </div> : <div>loading</div>
-  )
-  
-}
+      <ImageViewer
+        id={product.id}
+        mainPic={product.mainPic}
+        sidePics={product.sidePics}
+      />
+      <Purchase id={product.id} name={product.name} price={product.price} />
+    </div>
+  ) : (
+    <div>loading</div>
+  );
+};
 
-const ImageViewer = ({mainPic, sidePics}) => {
+const ImageViewer = ({ mainPic, sidePics }) => {
   const [picture, setPicture] = useState();
   return (
     <div className={styles.ImageViewer}>
       <div className={styles.DisplayPicContainer}>
-        <img src={"/assets/" + (picture || mainPic)} 
+        <img
+          src={"/assets/" + (picture || mainPic)}
           className={styles.DisplayPic}
         />
       </div>
 
       <div className={styles.SidePics}>
-
-        <div className={styles.NavThumbContainer}
-          onClick={e=>{
+        <div
+          className={styles.NavThumbContainer}
+          onClick={(e) => {
             e.preventDefault();
             setPicture(mainPic);
           }}
         >
-          <img src={"/assets/" + mainPic} className={styles.NavThumbnail}/>
+          <img src={"/assets/" + mainPic} className={styles.NavThumbnail} />
         </div>
 
-        {sidePics && sidePics.map((item, i)=>{
-          return (
-            <div key={i} 
-              className={styles.NavThumbContainer}
-              onClick={e=>{
-                e.preventDefault();
-                setPicture(item)
-              }}>
-              <img src={"/assets/" + item}
-                className={styles.NavThumbnail}
-              />
-            </div>
-          )
-        })}
+        {sidePics &&
+          sidePics.map((item, i) => {
+            return (
+              <div
+                key={i}
+                className={styles.NavThumbContainer}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setPicture(item);
+                }}
+              >
+                <img src={"/assets/" + item} className={styles.NavThumbnail} />
+              </div>
+            );
+          })}
       </div>
-      
     </div>
-  )
-}
+  );
+};
 
-const Purchase = ({name, price, id}) => {
+const Purchase = ({ name, price, id }) => {
   const history = useHistory();
-  const token = useSelector(store=>store.token);
+  const token = useSelector((store) => store.token);
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
-
 
   return (
     <div className={styles.Purchase}>
       <p className={styles.Name}>{name}</p>
-      <p className={styles.Price}>$ {price}</p>
-      
+      <p className={styles.Price}>CDN$ {price}</p>
+
       <div className={styles.AdjustQuantity}>
-        <p className={styles.Quantity}>Quantity</p>
-        <input className={styles.InputNum}
-          value={quantity}
-          onChange={e=>{
+        <p className={styles.Quantity}>Quantity: {quantity}</p>
+        <button
+          className={styles.adjustQuantityButton}
+          onClick={(e) => {
             e.preventDefault();
-            setQuantity(e.target.value);
+            setQuantity(quantity === 1 ? 1 : quantity - 1);
           }}
-        />
-        <button className={styles.PlusBut}
-          onClick={(e)=>{
-            e.preventDefault();
-            setQuantity(quantity + 1)
+        >
+          -
+        </button>
+        <button
+          className={styles.adjustQuantityButton}
+          onClick={() => {
+            setQuantity(quantity + 1);
           }}
-        >+</button>
-        <button className={styles.MinusBut}
-          onClick={e=>{
-            e.preventDefault();
-            setQuantity(quantity === 1 ? 1 : quantity - 1 );
-          }}
-        >-</button>
+        >
+          +
+        </button>
       </div>
 
-      <button className={styles.AddToCart}
-        onClick={e=>{
+      <button
+        className={styles.AddToCart}
+        onClick={(e) => {
           e.preventDefault();
           if (token !== undefined) {
-            axios.post("/api/cart/add-item-entry", {
-              itemCatalogId:id,
-              quantity,
-              sugar: 100,
-              ice: 100,
-              tapioca: 0,
-              pudding: 0,
-              grassjelly: 0,
-            }, {
-              headers: {
-                "Content-Type":"application/json",
-                "Authorization": "Bearer " + token
-              }
-            }).then(res=>{
-              history.push("/cart");
-            }).catch(e=>{
-              console.log(e)
-            })
+            axios
+              .post(
+                "/api/cart/add-item-entry",
+                {
+                  itemCatalogId: id,
+                  quantity,
+                  sugar: 100,
+                  ice: 100,
+                  tapioca: 0,
+                  pudding: 0,
+                  grassjelly: 0,
+                },
+                {
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + token,
+                  },
+                }
+              )
+              .then((res) => {
+                history.push("/cart");
+              })
+              .catch((e) => {
+                console.log(e);
+              });
           } else {
-            history.push("/auth/sign-up")
+            history.push("/auth/sign-up");
           }
-          
         }}
-      >Add to cart</button>
-      <button className={styles.BuyItNow}>Buy it now</button>
-      
+      >
+        Add to cart
+      </button>
     </div>
-  )
-}
+  );
+};
