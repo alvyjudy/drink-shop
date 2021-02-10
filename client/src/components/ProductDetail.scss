@@ -2,7 +2,8 @@
 
 .ProductDetail {
   box-shadow: theme.$elevation1;
-  margin: 1em;
+  margin: 1em auto;
+  max-width: 500px;
 }
 
 .ImageViewer {
@@ -52,6 +53,10 @@
   margin: 0;
 }
 
+.Quantity {
+  margin: 1em;
+}
+
 .AdjustQuantity {
   display: flex;
 }
@@ -71,4 +76,5 @@
 .AddToCart {
   @include theme.containedButton();
   margin: 0.2em;
+  width: 10em;
 }

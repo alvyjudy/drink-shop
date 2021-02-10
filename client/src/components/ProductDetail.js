@@ -89,7 +89,7 @@ const Purchase = ({ name, price, id }) => {
       <p className={styles.Price}>CDN$ {price}</p>
 
       <div className={styles.AdjustQuantity}>
-        <p className={styles.Quantity}>Quantity: {quantity}</p>
+        <p className={styles.Quantity}>qty: {quantity}</p>
         <button
           className={styles.adjustQuantityButton}
           onClick={(e) => {
