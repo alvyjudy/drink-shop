@@ -1,45 +1,35 @@
+@use "../styles/theme";
+
 .Orders {
   margin: 2em auto;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
 }
 
 .Order {
-  border: 1px black solid;
-  width: 30em;
+  box-shadow: theme.$elevation1;
   margin: 2em;
-
+  max-width: 500px;
+  padding: 0 1em;
   display: flex;
   flex-direction: column;
 }
 
 .OrderDetail {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  padding: 1em;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.OrderNum, .Name, .Address, .Phone {
-  grid-column: 1 / 2;
+.customerDetail {
+  flex: 1 1;
 }
 
-
-.Total, .Hst, .Subtotal {
-  grid-column: -1 / -2;
+.orderDetailPrice {
+  flex: 1 1;
 }
 
-.Total {
-  grid-row: 2 / 3;
-}
-
-.Hst {
-  grid-row: 3 / 4;
-}
-
-.Subtotal {
-  grid-row: 4 / 5;
+.orderDetailText {
 }
 
 .OrderedItems {
@@ -51,10 +41,17 @@
 .Item {
   margin: 1em;
   padding: 1em;
+  width: 10em;
   border: 1px black dashed;
 }
 
-.ItemName, .ItemQuantity, .ItemPrice, .Sugar,
-.Ice, .Tapioca, .Pudding, .Grassjelly {
+.ItemName,
+.ItemQuantity,
+.ItemPrice,
+.Sugar,
+.Ice,
+.Tapioca,
+.Pudding,
+.Grassjelly {
   margin: 0;
 }
