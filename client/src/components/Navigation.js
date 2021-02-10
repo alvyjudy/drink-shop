@@ -31,7 +31,7 @@ export const Navigation = () => {
       <div className={styles.secondaryNavigation}>
         <a
           className={styles.BlogLink}
-          href="https://github.com/alvyjudy/alveoli-bubble-tea-shop-frontend"
+          href="https://github.com/alvyjudy/drink-shop"
         >
           <img
             className={styles.GithubLogo}
